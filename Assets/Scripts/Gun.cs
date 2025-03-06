@@ -26,6 +26,6 @@ public class Gun : MonoBehaviour
     /// </summary>
     public void Shoot()
     {
-        ObjectPool.Instance.GetFromPool("Bullet");
+        ObjectPool.Instance.GetFromPool("Bullet",bulletPoint);
     }
 }

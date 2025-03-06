@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Hero
   - Truck
+  - Bullet
+  - Zombie
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -17,7 +20,7 @@ TagManager:
   - middle
   - back
   - Hero
-  - 
+  - Bullet
   - 
   - 
   - 

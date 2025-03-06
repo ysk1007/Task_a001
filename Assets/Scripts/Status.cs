@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class Status : MonoBehaviour
 {
+    [Header("태그")]
+    public string tag;
+
     [Header("체력")]
     public float maxHp;
     public float currentHp;
@@ -15,8 +18,11 @@ public class Status : MonoBehaviour
     [Header("공격력")]
     public float attackDamage;
 
-    private void OnEnable()
+    public void SetUp(ZombieData zombieData)
     {
+        attackDamage = zombieData.Damage;
+        maxHp = zombieData.Hp;
+        tag = zombieData.Tag;
         if (sliderObject != null)
         {
             sliderObject.SetActive(false);
@@ -24,11 +30,6 @@ public class Status : MonoBehaviour
         }
 
         currentHp = maxHp;
-    }
-
-    public void SetUp()
-    {
-
     }
 
     /// <summary>
@@ -46,6 +47,12 @@ public class Status : MonoBehaviour
         {
             sliderObject?.SetActive(true);
             hpSlider.value = currentHp;
+        }
+
+        if (currentHp == 0) 
+        { 
+            ObjectPool.Instance.ReturnToPool(tag, gameObject);
+            if (gameObject.tag == "Zombie") ZombieSpawner.instance.currentZombieCount--;
         }
     }
 

@@ -40,7 +40,7 @@ public class ObjectPool : MonoBehaviour
 
             for (int i = 0; i < pool.size; i++)
             {
-                GameObject obj = Instantiate(pool.prefab);
+                GameObject obj = Instantiate(pool.prefab, Vector3.zero, Quaternion.identity, objects);
                 obj.SetActive(false);
                 obj.transform.SetParent(transform);
                 objectPool.Enqueue(obj);
@@ -50,7 +50,7 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
-    public GameObject GetFromPool(string tag)
+    public GameObject GetFromPool(string tag, Transform pos = null)
     {
         if (!poolDictionary.ContainsKey(tag))
         {
@@ -62,6 +62,8 @@ public class ObjectPool : MonoBehaviour
         if (objectPool.Count > 0)
         {
             GameObject obj = objectPool.Dequeue();
+            obj.transform.position = pos.position;
+            obj.transform.rotation = pos.rotation;
             obj.SetActive(true);
             return obj;
         }
@@ -72,7 +74,7 @@ public class ObjectPool : MonoBehaviour
             {
                 if (pool.tag == tag)
                 {
-                    GameObject obj = Instantiate(pool.prefab);
+                    GameObject obj = Instantiate(pool.prefab, pos.position , pos.rotation, objects);
                     obj.SetActive(true);
                     return obj;
                 }

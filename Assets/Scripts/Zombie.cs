@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Zombie : MonoBehaviour
 {
+    public ZombieData zombieData;
+
     [Header("스피드")]
     public float speed = 5f; // 이동 속도
 
@@ -23,11 +25,22 @@ public class Zombie : MonoBehaviour
     Rigidbody2D rb;
     Animator animator;
 
+    private void OnEnable()
+    {
+        SetUp();
+    }
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         status = GetComponent<Status>();
+    }
+
+    void SetUp()
+    {
+        speed = zombieData.MoveSpeed;
+        status.SetUp(zombieData);
     }
 
     void Update()

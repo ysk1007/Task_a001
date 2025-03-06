@@ -183,9 +183,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6997482f30b7ab148b847fcca655649f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heroAnimator: {fileID: 0}
   bulletPoint: {fileID: 7863377547103319403}
   attackTimer: 0
   attackSpeed: 0.2
+  bulletCount: 5
+  spreadAngle: 30
+  bulletData: {fileID: 11400000, guid: 3edea907addc122409b38e8cf75a4e2c, type: 2}
 --- !u!1 &3490532684418615224
 GameObject:
   m_ObjectHideFlags: 0

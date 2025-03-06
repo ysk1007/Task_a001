@@ -15,10 +15,10 @@ public class Bullet : MonoBehaviour
     private float penetration;      // 관통력
 
     HashSet<Collision2D> hitZombies = new HashSet<Collision2D>();
+
     private void OnEnable()
     {
-        trailRenderer.Clear();
-        SetUp();
+        SetUp(bulletData);
     }
 
     private void Update()
@@ -32,15 +32,16 @@ public class Bullet : MonoBehaviour
         if(lifeTimer >= bulletLifeTime)
         {
             lifeTimer = 0;
-            ObjectPool.Instance.ReturnToPool("Bullet", gameObject);
+            ReturnToPool();
         }
     }
 
     /// <summary>
     /// 총알 데이터 설정
     /// </summary>
-    public void SetUp()
+    public void SetUp(BulletData bulletData)
     {
+        trailRenderer.Clear();
         hitZombies.Clear();
 
         damage = bulletData.Damage;

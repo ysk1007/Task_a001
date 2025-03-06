@@ -42,7 +42,6 @@ public class ObjectPool : MonoBehaviour
             {
                 GameObject obj = Instantiate(pool.prefab, Vector3.zero, Quaternion.identity, objects);
                 obj.SetActive(false);
-                obj.transform.SetParent(transform);
                 objectPool.Enqueue(obj);
             }
 

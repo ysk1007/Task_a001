@@ -56,6 +56,7 @@ GameObject:
   m_Component:
   - component: {fileID: 175888370978376783}
   - component: {fileID: 1289778038360852145}
+  - component: {fileID: 1484348689199561519}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Untagged
@@ -131,6 +132,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1484348689199561519
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8958240697474582917}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ef770834c534c1245a9cfd6f78df0a0c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &292203120439998009
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -143,6 +165,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChaGun_0
       objectReference: {fileID: 0}
+    - target: {fileID: 3077683698205911596, guid: 94035160c7b96284ab1707b28436f8ce, type: 3}
+      propertyPath: heroAnimator
+      value: 
+      objectReference: {fileID: 1484348689199561519}
     - target: {fileID: 8830513619631620081, guid: 94035160c7b96284ab1707b28436f8ce, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

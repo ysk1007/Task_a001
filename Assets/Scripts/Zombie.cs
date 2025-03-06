@@ -62,7 +62,7 @@ public class Zombie : MonoBehaviour
     void Move()
     {
         // -1 방향으로 이동
-        rb.velocity = new Vector2( IsAnimationPlaying("Attack") ? speed / 2 : -speed, rb.velocity.y);
+        rb.velocity = new Vector2( IsAnimationPlaying("Attack") ? speed / 4 : -speed, rb.velocity.y);
     }
 
     void Jumpping()
@@ -107,7 +107,6 @@ public class Zombie : MonoBehaviour
 
     void layerChange()
     {
-        Debug.Log("레이어 교체");
         int layerIndex = gameObject.layer + 1;
         gameObject.layer = layerIndex > 8 ? 6 : layerIndex;
 

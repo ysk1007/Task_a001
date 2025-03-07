@@ -6,6 +6,10 @@ using UnityEngine;
 public class WeaponData : ScriptableObject
 {
     [SerializeField]
+    private int weaponNum;               // 무기 번호
+    public int WeaponNum { get { return weaponNum; } }
+
+    [SerializeField]
     private float attackSpeed;         // 공격 속도
     public float AttackSpeed { get { return attackSpeed; } }
 

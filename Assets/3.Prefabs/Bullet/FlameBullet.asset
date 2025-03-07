@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FlameBullet
   m_EditorClassIdentifier: 
   bulletTag: FlameBullet
-  damage: 10
+  damage: 5
   moveSpeed: 0
   lifeTime: 0
   penetration: 0

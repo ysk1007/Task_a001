@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
+    [Header("히어로 반동 애니메이션")]
     public Animator heroAnimator;
 
     [Header("공격 포인트")]
@@ -30,6 +31,7 @@ public class Gun : MonoBehaviour
 
     void SetUp()
     {
+        // 히어로 공격 속도에 맞춰서 모션 속도 설정
         heroAnimator.SetFloat("MotionSpeed", 1 / attackSpeed);
     }
 
@@ -37,6 +39,7 @@ public class Gun : MonoBehaviour
     {
         SetUp();
 
+        // 공격 속도에 맞에 공격
         attackTimer += Time.deltaTime;
         if (attackTimer >= attackSpeed)
         {
@@ -50,10 +53,12 @@ public class Gun : MonoBehaviour
     /// </summary>
     public void Shoot()
     {
+        // 총구 플래시
         StartCoroutine("Flash");
+
         for (int i = 0; i < bulletCount; i++)
         {
-            // 랜덤한 퍼짐 각도 계산 (-spreadAngle/2 ~ +spreadAngle/2)
+            // 랜덤한 퍼짐 각도 계산
             float angleOffset = Random.Range(-spreadAngle / 2f, spreadAngle / 2f);
 
             // 현재 총구 방향에서 회전 적용
@@ -64,10 +69,12 @@ public class Gun : MonoBehaviour
             bullet.GetComponent<Bullet>().SetUp(bulletData);
             bullet.transform.rotation = bulletRotation;
         }
+
+        // 히어로 반동 애니메이션
         heroAnimator.SetTrigger("Shoot");
     }
 
-
+    // 총구 플래시 재생
     IEnumerator Flash()
     {
         muzzleFlash.SetActive(true);

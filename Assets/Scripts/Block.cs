@@ -19,6 +19,9 @@ public class Block : MonoBehaviour
         ShootRaycast();
     }
 
+    /// <summary>
+    /// 충돌 감지하는 레이캐스트
+    /// </summary>
     void ShootRaycast()
     {
         Vector2 origin = transform.position; // 레이캐스트 시작점
@@ -34,8 +37,10 @@ public class Block : MonoBehaviour
         {
             int layer = hit.collider.gameObject.layer;
 
+            // 만약 내 앞에 있는 오브젝트 레이어가 타워라면
             if (layer == 9)
             {
+                // 공격
                 zombie.Attack(true,hit.collider.GetComponent<Status>());
             }
             else
@@ -43,8 +48,10 @@ public class Block : MonoBehaviour
                 zombie.Attack(false);
             }
 
+            // 만약 내 앞에 같은 레이어를 가진 좀비가 내 앞을 막고 있다면
             if (layer == transform.parent.gameObject.layer)
             {
+                // block 변수 true
                 zombie.block = true;
             }
             else

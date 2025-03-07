@@ -143,6 +143,13 @@ MonoBehaviour:
   attackSpeed: 0
   isShooting: 0
   particle: {fileID: 1833127129052447926}
+  isSkill: 0
+  skillTimer: 0
+  skillDuration: 5
+  defaultOffSet: {x: 2.665432, y: 0.2180807}
+  skillOffSet: {x: 4.388149, y: 0.5667256}
+  defaultSize: {x: 4.295444, y: 1.678474}
+  skillSize: {x: 7.740876, y: 2.375764}
 --- !u!61 &2228703101867895852
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -175,7 +182,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.6654325, y: 0.2180807}
+  m_Offset: {x: 2.665432, y: 0.2180807}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -186,7 +193,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.2954435, y: 1.6784741}
+  m_Size: {x: 4.295444, y: 1.678474}
   m_EdgeRadius: 0
 --- !u!1 &6387233825277885688
 GameObject:

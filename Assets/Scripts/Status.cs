@@ -9,27 +9,28 @@ public class Status : MonoBehaviour
     public string tag;
 
     [Header("체력")]
-    public float maxHp;
-    public float currentHp;
+    public float maxHp;                 // 최대 체력
+    public float currentHp;             // 현재 체력
 
-    public GameObject sliderObject;
-    public Slider hpSlider;
+    [Header("HP 슬라이더")]
+    public GameObject sliderObject;     // 슬라이더 오브젝트
+    public Slider hpSlider;             // hp 슬라이더 ui
 
     [Header("공격력")]
     public float attackDamage;
+
+    private void Awake()
+    {
+        SliderSetting();
+    }
 
     public void SetUp(ZombieData zombieData)
     {
         attackDamage = zombieData.Damage;
         maxHp = zombieData.Hp;
         tag = zombieData.Tag;
-        if (sliderObject != null)
-        {
-            sliderObject.SetActive(false);
-            hpSlider.maxValue = maxHp;
-        }
 
-        currentHp = maxHp;
+        SliderSetting();
     }
 
     /// <summary>
@@ -49,12 +50,28 @@ public class Status : MonoBehaviour
             hpSlider.value = currentHp;
         }
 
+        // 현재 체력이 0이라면
         if (currentHp == 0) 
         { 
+            // 풀링에 반환
             ObjectPool.Instance.ReturnToPool(tag, gameObject);
+
+            // 좀비 태그를 가진 오브젝트라면 현재 좀비수 -1
             if (gameObject.tag == "Zombie") ZombieSpawner.instance.currentZombieCount--;
         }
     }
 
-    
+    /// <summary>
+    /// 슬라이더 세팅
+    /// </summary>
+    void SliderSetting()
+    {
+        if (sliderObject != null)
+        {
+            sliderObject.SetActive(false);
+            hpSlider.maxValue = maxHp;
+        }
+
+        currentHp = maxHp;
+    }
 }

@@ -30,12 +30,18 @@ public class ObjectPool : MonoBehaviour
         InitializePools();
     }
 
+    /// <summary>
+    /// 풀 초기화
+    /// </summary>
     private void InitializePools()
     {
+        // 딕셔너리 초기화
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
+        // 관리할 오브젝트들 초기 사이즈만큼 생성
         foreach (Pool pool in pools)
         {
+            // 새로운 풀링 큐 생성
             Queue<GameObject> objectPool = new Queue<GameObject>();
 
             for (int i = 0; i < pool.size; i++)
@@ -45,19 +51,22 @@ public class ObjectPool : MonoBehaviour
                 objectPool.Enqueue(obj);
             }
 
+            // 딕셔너리에 생성한 큐와 태그를 추가
             poolDictionary.Add(pool.tag, objectPool);
         }
     }
 
+    /// <summary>
+    /// 태그로 오브젝트 가져오기
+    /// </summary>
     public GameObject GetFromPool(string tag, Transform pos = null)
     {
-        if (!poolDictionary.ContainsKey(tag))
-        {
-            return null;
-        }
+        // 관리 딕셔너리에 존재하는 오브젝트인지 확인
+        if (!poolDictionary.ContainsKey(tag)) return null;
 
         Queue<GameObject> objectPool = poolDictionary[tag];
 
+        // 쉬고 있는 오브젝트가 있음
         if (objectPool.Count > 0)
         {
             GameObject obj = objectPool.Dequeue();
@@ -82,8 +91,12 @@ public class ObjectPool : MonoBehaviour
         return null;
     }
 
+    /// <summary>
+    /// 태그로 오브젝트를 돌려 받음
+    /// </summary>
     public void ReturnToPool(string tag, GameObject obj)
     {
+        // 딕셔너리에 태그가 존재하는지 확인
         if (!poolDictionary.ContainsKey(tag))
         {
             Destroy(obj);

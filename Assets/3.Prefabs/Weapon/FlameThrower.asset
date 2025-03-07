@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ead7bcdf1ce0f745ac40f27640c4e0b, type: 3}
   m_Name: FlameThrower
   m_EditorClassIdentifier: 
-  attackSpeed: 0.8
+  weaponNum: 1
+  attackSpeed: 0.6
   level: 0
   range: 7
   bulletData: {fileID: 11400000, guid: eff91cadee60142409142d59d60d0baf, type: 2}

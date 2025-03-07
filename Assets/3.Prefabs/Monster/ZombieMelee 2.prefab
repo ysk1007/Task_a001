@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dc63b4b8e5b4294c9f9b0fd37391942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tag: 
+  tag: Zombie3
   maxHp: 100
   currentHp: 100
   sliderObject: {fileID: 8547008557807064259}

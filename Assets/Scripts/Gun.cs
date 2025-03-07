@@ -20,6 +20,9 @@ public class Gun : MonoBehaviour
     [Header("총알 데이터")]
     public BulletData bulletData;
 
+    [Header("총구 플래시")]
+    public GameObject muzzleFlash;
+
     private void Start()
     {
         SetUp();
@@ -47,6 +50,7 @@ public class Gun : MonoBehaviour
     /// </summary>
     public void Shoot()
     {
+        StartCoroutine("Flash");
         for (int i = 0; i < bulletCount; i++)
         {
             // 랜덤한 퍼짐 각도 계산 (-spreadAngle/2 ~ +spreadAngle/2)
@@ -56,10 +60,19 @@ public class Gun : MonoBehaviour
             Quaternion bulletRotation = bulletPoint.rotation * Quaternion.Euler(0, 0, angleOffset);
 
             // 오브젝트 풀에서 총알 가져와서 회전 적용
-            GameObject bullet = ObjectPool.Instance.GetFromPool("Bullet", bulletPoint);
+            GameObject bullet = ObjectPool.Instance.GetFromPool(bulletData.BulletTag, bulletPoint);
             bullet.GetComponent<Bullet>().SetUp(bulletData);
             bullet.transform.rotation = bulletRotation;
         }
         heroAnimator.SetTrigger("Shoot");
     }
+
+
+    IEnumerator Flash()
+    {
+        muzzleFlash.SetActive(true);
+        yield return new WaitForSeconds(0.08f);
+        muzzleFlash.SetActive(false);
+    }
+
 }

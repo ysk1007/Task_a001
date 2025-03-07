@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49be2fa9eeffe904aa503d657631a8a6, type: 3}
   m_Name: Bullet
   m_EditorClassIdentifier: 
+  bulletTag: Bullet
   damage: 50
   moveSpeed: 15
   lifeTime: 2

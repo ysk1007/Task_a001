@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MiniGun : BoxWeapon
 {
+    [Header("ÃÑ±¸ ÇÃ·¡½Ã")]
+    public GameObject muzzleFlash;
+
     private void Awake()
     {
         SetUp();
@@ -26,22 +29,35 @@ public class MiniGun : BoxWeapon
             {
                 attackTimer = 0;
 
-                float delay = 0;
-                for (int i = 0; i < 5; i++)
-                {
-                    Invoke("Attack", delay);
-                    delay += 0.1f;
-                }
+                Firing();
             }
 
             RotateTowardsTarget();
         }
     }
 
+    void Firing()
+    {
+        float delay = 0;
+        for (int i = 0; i < 5; i++)
+        {
+            Invoke("Attack", delay);
+            delay += 0.2f;
+        }
+    }
+
     protected override void Attack()
     {
-        GameObject bullet = ObjectPool.Instance.GetFromPool("Bullet", bulletSpawnPoint);
+        StartCoroutine("Flash");
+        GameObject bullet = ObjectPool.Instance.GetFromPool(weaponData._BulletData.BulletTag, bulletSpawnPoint);
         bullet.GetComponent<Bullet>().SetUp(weaponData._BulletData);
+    }
+
+    IEnumerator Flash()
+    {
+        muzzleFlash.SetActive(true);
+        yield return new WaitForSeconds(0.08f);
+        muzzleFlash.SetActive(false);
     }
 
     protected override void SetUp() {base.SetUp();}

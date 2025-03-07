@@ -77,6 +77,6 @@ public class Bullet : MonoBehaviour
     void ReturnToPool()
     {
         bulletActive = false;
-        ObjectPool.Instance.ReturnToPool("Bullet", gameObject);
+        ObjectPool.Instance.ReturnToPool(bulletData.BulletTag, gameObject);
     }
 }

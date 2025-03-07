@@ -15,13 +15,14 @@ public class BoxWeapon : MonoBehaviour
     [HideInInspector] public LayerMask targetLayer; // 감지할 대상의 레이어
 
     [HideInInspector] public Transform target; // 현재 바라볼 타겟
-    [HideInInspector] public float attackTimer;  // 공격 타이머
+     public float attackTimer;  // 공격 타이머
     [HideInInspector] public float attackSpeed;
 
     [HideInInspector] public bool isShooting;
 
     protected virtual void SetUp()
     {
+        if (weaponData == null) return;
         range = weaponData.Range;
         attackSpeed = weaponData.AttackSpeed;
     }

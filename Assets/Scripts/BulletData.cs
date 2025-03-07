@@ -6,6 +6,10 @@ using UnityEngine;
 public class BulletData : ScriptableObject
 {
     [SerializeField]
+    private string bulletTag;           // ÃÑ¾Ë ÅÂ±×
+    public string BulletTag { get { return bulletTag; } }
+
+    [SerializeField]
     private float damage;           // ÃÑ¾Ë ´ë¹ÌÁö
     public float Damage { get { return damage; } }
 

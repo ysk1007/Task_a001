@@ -10,8 +10,8 @@ public class WeaponData : ScriptableObject
     public float AttackSpeed { get { return attackSpeed; } }
 
     [SerializeField]
-    private float damage;               // 피해량
-    public float Damage { get { return damage; } }
+    private int level;               // 무기 레벨
+    public int Level { get { return level; } }
 
     [SerializeField]
     private float range;               // 공격 범위

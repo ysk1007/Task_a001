@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Zombie : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class Zombie : MonoBehaviour
     public float jumpTimer = 0f;        // 점프 타이머
     public float jumpDelay = 2f;        // 점프 딜레이
 
+    public float moveDuration = 0.5f; // Z축 이동 시간
+    private bool isMoving = false;
     Status targetBox;                   // 타겟하고 있는 박스
     Status status;                      // 능력치
     Rigidbody2D rb;
@@ -138,23 +141,18 @@ public class Zombie : MonoBehaviour
 
         // 레이어 별로 Z값 다르게 적용
         Vector3 pos = transform.position;
-        switch (gameObject.layer)
+
+        // 목표 Z값 설정
+        float targetZ = gameObject.layer switch
         {
-            // Front
-            case 6:
-                transform.position = new Vector3(pos.x, pos.y, -1);
-                break;
+            6 => -1f,  // Front
+            7 => 0f,  // Middle
+            8 => 1f,  // Back
+            _ => transform.position.z
+        };
 
-            // Middle
-            case 7:
-                transform.position = new Vector3(pos.x, pos.y, 0);
-                break;
-
-            // Back
-            case 8:
-                transform.position = new Vector3(pos.x, pos.y, 1);
-                break;
-        }
+        // 부드러운 이동 실행
+        StartCoroutine(SmoothMoveZ(targetZ, moveDuration));
     }
 
     // 애니메이션이 재생 중인지 확인하는 메서드
@@ -162,5 +160,34 @@ public class Zombie : MonoBehaviour
     {
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0); // 0은 기본 레이어
         return stateInfo.IsName(animationName); // 애니메이션 이름이 일치하는지 확인
+    }
+
+    /// <summary>
+    /// Z축 부드럽게 움직이는 코루틴
+    /// </summary>
+    IEnumerator SmoothMoveZ(float targetZ, float duration)
+    {
+        isMoving = true;
+
+        // 시작 위치
+        Vector3 startPos = transform.position;
+
+        // 종료 위치
+        Vector3 endPos = new Vector3(startPos.x, startPos.y, targetZ);
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            // Lerp를 사용하여 부드럽게 Z축 이동
+            transform.position = Vector3.Lerp(startPos, endPos, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // 최종 위치 보정
+        transform.position = endPos;
+
+        isMoving = false;
     }
 }

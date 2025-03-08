@@ -32,14 +32,14 @@ public class Bullet : MonoBehaviour
         if (!bulletActive) return;
 
         // 라이프 타임이 지나면
-        lifeTimer += Time.deltaTime;
+        /*lifeTimer += Time.deltaTime;
         if(lifeTimer >= bulletLifeTime)
         {
             lifeTimer = 0;
 
             // 오브젝트 풀에 돌려주기
             ReturnToPool();
-        }
+        }*/
     }
 
     /// <summary>
@@ -97,6 +97,8 @@ public class Bullet : MonoBehaviour
     /// </summary>
     void ReturnToPool()
     {
+        if (!bulletActive) return;
+
         bulletActive = false;
         ObjectPool.Instance.ReturnToPool(bulletData.BulletTag, gameObject);
     }

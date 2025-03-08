@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bullet
   m_EditorClassIdentifier: 
   bulletTag: Bullet
-  damage: 50
+  damage: 35
   moveSpeed: 15
   lifeTime: 2
   penetration: 1

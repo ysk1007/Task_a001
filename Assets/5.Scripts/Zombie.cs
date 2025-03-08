@@ -47,7 +47,7 @@ public class Zombie : MonoBehaviour
     void Update()
     {
         // 좀비에게 가로 막힘
-        if (block)
+        if (block && !isJumping)
         {
             // 점프 타이머에 + 시간
             jumpTimer += Time.deltaTime;
@@ -78,6 +78,7 @@ public class Zombie : MonoBehaviour
         // 점프중이면 취소
         if (isJumping) return;
 
+        isJumping = true; // 점프 중 상태 설정
         // 실제 기능
         StartCoroutine(Jump());
     }
@@ -87,7 +88,6 @@ public class Zombie : MonoBehaviour
     /// </summary>
     private IEnumerator Jump()
     {
-        isJumping = true; // 점프 중 상태 설정
         rb.velocity = new Vector2(rb.velocity.x, jumpForce); // 점프 힘 적용
 
         // 점프 지속 시간 동안 대기

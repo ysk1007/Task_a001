@@ -508,7 +508,7 @@ MonoBehaviour:
   tokenDelay: 2
   tokenSlider: {fileID: 2064167279}
   tokenValue: {fileID: 44014082}
-  skillPrice: 0000000000000000
+  skillPrice: 0100000003000000
   priceTexts:
   - {fileID: 1798279601}
   - {fileID: 745003663}

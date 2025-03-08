@@ -271,7 +271,7 @@ MonoBehaviour:
   heroAnimator: {fileID: 0}
   bulletPoint: {fileID: 7863377547103319403}
   attackTimer: 0
-  attackSpeed: 0.2
+  attackSpeed: 1
   bulletCount: 5
   spreadAngle: 30
   bulletData: {fileID: 11400000, guid: 3edea907addc122409b38e8cf75a4e2c, type: 2}
